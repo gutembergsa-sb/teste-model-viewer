@@ -11,11 +11,8 @@
 <body>
     <div class="app">
         <main>
-            <section class="task-creator">
-                <input type="file" id="model-field" placeholder="Adicione uma modelo..." accept=".glb,.bin,.gltf,.usdz" multiple />
-            </section>    
-            
-            <!-- <model-viewer id="dimension-demo" ar camera-controls touch-action="pan-y"></model-viewer>             -->
+            <input type="file" id="model-field" placeholder="Adicione uma modelo..." accept=".glb,.bin,.gltf,.usdz" multiple />
+            <input type="file" id="bg-field" placeholder="Adicione uma fundo..." accept="image/*"    />
 
             <model-viewer id="dimension-demo" ar camera-controls touch-action="pan-y">
                 <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1" data-normal="1 0 0"></button>
