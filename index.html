@@ -15,9 +15,9 @@
                 <input type="file" id="model-field" placeholder="Adicione uma modelo..." accept=".glb,.bin,.gltf,.usdz" multiple />
             </section>    
             
-            <model-viewer id="dimension-demo" ar camera-controls touch-action="pan-y"></model-viewer>            
+            <!-- <model-viewer id="dimension-demo" ar camera-controls touch-action="pan-y"></model-viewer>             -->
 
-            <!-- <model-viewer id="dimension-demo" ar camera-controls touch-action="pan-y">
+            <model-viewer id="dimension-demo" ar camera-controls touch-action="pan-y">
                 <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1" data-normal="1 0 0"></button>
                 <button slot="hotspot-dim+X-Y" class="dim" data-position="1 -1 0" data-normal="1 0 0"></button>
                 <button slot="hotspot-dot+X-Y-Z" class="dot" data-position="1 -1 -1" data-normal="1 0 0"></button>
@@ -37,11 +37,7 @@
                     <line class="dimensionLine"></line>
                     <line class="dimensionLine"></line>
                 </svg>
-            </model-viewer> -->
-            
-             <button id="ar-failure">
-                AR is not tracking!
-            </button> 
+            </model-viewer>
         </main>
     </div> 
 </body>
