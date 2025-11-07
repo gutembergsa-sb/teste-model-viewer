@@ -1,44 +1,123 @@
 <!doctype html>
-<html lang="pt-BR">
+<html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Jasmtasck — Starter</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="model-viewer-dimensions.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
 <body>
-    <div class="app">
-        <main>
-            <input type="file" id="model-field" placeholder="Adicione uma modelo..." accept=".glb,.bin,.gltf,.usdz" multiple />
-            <input type="file" id="bg-field" placeholder="Adicione uma fundo..." accept="image/*"    />
+    <header class="flex h-[90px] px-[40px] border-b-[1px] border-[#E1E1E1FF]">
+        <h1 class="content-center font-poppins text-[31px]/[31px]  text-[#1976D2FF] font-bold">
+            ModelViewer
+        </h1>
+    </header>
+    <main>
+        <div class="h-full bg-white flex flex-row gap-[40px] justify-center p-10 max-[990px]:flex-col">
+            <div class="w-full max-w-[320px] max-h-[698px] bg-white rounded-md shadow-md max-[990px]:max-w-full">
+                <div class="flex items-center justify-left h-[60px] px-[24px] border-b-[1px] border-[#E1E1E1FF]">
+                    <p class="text-[18px]/[28px] font-semibold text-[#1A1A1AFF] text-center">Controles do modelo</p>
+                </div>
+                <div class="flex flex-col py-[35px] px-[24px] gap-[55px]">
+                    <div class="grid gap-[9px]">
+                        <label to="model-field" class="text-[#1A1A1AFF] text-sm text-left font-semibold cursor-pointer">
+                            Carregar modelo 3D
+                            <p class="text-xs/[16px] font-medium text-[#5F5F5FFF] text-left my-[9px]">
+                                Por favor, envia apenas ficheiros .gbl ou .gltf. Para ficheiros .gltf, envia também o ficheiro binário correspondente.
+                            </p> 
+                            <input
+                                id="model-field"    
+                                hidden
+                                multiple
+                                type="file" 
+                                accept=".glb,.bin,.gltf,.usdz" 
+                            />   
+                        </label>                     
+                    </div>      
+                    
+                    <div class="grid gap-[9px]">
+                        <label to="bg-field" class="text-[#1A1A1AFF] text-sm text-left font-semibold cursor-pointer">
+                            Carregar imagem de fundo
+                            <p class="text-xs/[16px] font-medium text-[#5F5F5FFF] text-left my-[9px]">
+                                Caso o dispositivo não tenha suporte para realidade aumentada (AR), utilize uma imagem de fundo.                            
+                            </p>                             
+                            <input
+                                hidden
+                                id="bg-field"
+                                type="file"
+                                accept="image/*"
+                                class="w-full text-sm border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-green-500"
+                            />                             
+                        </label>                      
+                    </div>      
+                    
+                    <div class="grid gap-[9px]">
+                        <label to="show-dimensions-external" class="flex items-center justify-between text-[#1A1A1AFF] text-sm text-left font-semibold cursor-pointer">
+                            Mostrar dimensões
+                            <input id="show-dimensions-external" type="checkbox" class="sr-only peer" checked="true">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600 after:peer-checked:left-[-19px] relative"></div>
+                        </label>                      
+                    </div>  
+                    
+                    <div class="w-full max-w-[320px] bg-white rounded-md shadow-md">
+                        <div class="flex items-center justify-left h-[60px] px-[24px] border-b-[1px] border-[#E1E1E1FF]">
+                            <p class="text-[16px]/[24px] font-semibold text-[#1A1A1AFF] text-center">Dimensões do modelo</p>
+                        </div>
 
-            <model-viewer id="dimension-demo" ar camera-controls touch-action="pan-y">
-                <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1" data-normal="1 0 0"></button>
-                <button slot="hotspot-dim+X-Y" class="dim" data-position="1 -1 0" data-normal="1 0 0"></button>
-                <button slot="hotspot-dot+X-Y-Z" class="dot" data-position="1 -1 -1" data-normal="1 0 0"></button>
-                <button slot="hotspot-dim+X-Z" class="dim" data-position="1 0 -1" data-normal="1 0 0"></button>
-                <button slot="hotspot-dot+X+Y-Z" class="dot" data-position="1 1 -1" data-normal="0 1 0"></button>
-                <button slot="hotspot-dim+Y-Z" class="dim" data-position="0 -1 -1" data-normal="0 1 0"></button>
-                <button slot="hotspot-dot-X+Y-Z" class="dot" data-position="-1 1 -1" data-normal="0 1 0"></button>
-                <button slot="hotspot-dim-X-Z" class="dim" data-position="-1 0 -1" data-normal="-1 0 0"></button>
-                <button slot="hotspot-dot-X-Y-Z" class="dot" data-position="-1 -1 -1" data-normal="-1 0 0"></button>
-                <button slot="hotspot-dim-X-Y" class="dim" data-position="-1 -1 0" data-normal="-1 0 0"></button>
-                <button slot="hotspot-dot-X-Y+Z" class="dot" data-position="-1 -1 1" data-normal="-1 0 0"></button>
+                        <div class="flex flex-col gap-[8px] py-[16px] px-[24px]">
 
-                <svg id="dimLines" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" class="dimensionLineContainer">
+                            <div class="flex justify-between px-[24px]">
+                                <span class="text-[14px]/[20px] font-normal text-[#5F5F5FFF] text-center">Comprimento:</span>
+                                <span data-comprimento class="text-[14px]/[20px] font-medium text-[#1A1A1AFF] text-center">0 cm</span>
+                            </div>
+                            <div class="flex justify-between px-[24px]">
+                                <span class="text-[14px]/[20px] font-normal text-[#5F5F5FFF] text-center">Largura:</span>
+                                <span data-largura class="text-[14px]/[20px] font-medium text-[#1A1A1AFF] text-center">0 cm</span>
+                            </div>
+                            <div class="flex justify-between px-[24px]">
+                                <span class="text-[14px]/[20px] font-normal text-[#5F5F5FFF] text-center">Altura:</span>
+                                <span data-altura class="text-[14px]/[20px] font-medium text-[#1A1A1AFF] text-center">0 cm</span>
+                            </div>                            
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+            <div class="w-full h-[755px] bg-white rounded-2xl border-[0px] shadow-md focus:border-[0px] overflow-clip">
+                <model-viewer id="dimension-demo" ar ar-modes="webxr" ar-scale="fixed" camera-orbit="-30deg auto auto" max-camera-orbit="auto 100deg auto" shadow-intensity="1" camera-controls touch-action="pan-y">
+                  <button slot="hotspot-dot+X-Y+Z" class="dot" data-position="1 -1 1" data-normal="1 0 0"></button>
+                  <button slot="hotspot-dim+X-Y" class="dim" data-position="1 -1 0" data-normal="1 0 0"></button>
+                  <button slot="hotspot-dot+X-Y-Z" class="dot" data-position="1 -1 -1" data-normal="1 0 0"></button>
+                  <button slot="hotspot-dim+X-Z" class="dim" data-position="1 0 -1" data-normal="1 0 0"></button>
+                  <button slot="hotspot-dot+X+Y-Z" class="dot" data-position="1 1 -1" data-normal="0 1 0"></button>
+                  <button slot="hotspot-dim+Y-Z" class="dim" data-position="0 -1 -1" data-normal="0 1 0"></button>
+                  <button slot="hotspot-dot-X+Y-Z" class="dot" data-position="-1 1 -1" data-normal="0 1 0"></button>
+                  <button slot="hotspot-dim-X-Z" class="dim" data-position="-1 0 -1" data-normal="-1 0 0"></button>
+                  <button slot="hotspot-dot-X-Y-Z" class="dot" data-position="-1 -1 -1" data-normal="-1 0 0"></button>
+                  <button slot="hotspot-dim-X-Y" class="dim" data-position="-1 -1 0" data-normal="-1 0 0"></button>
+                  <button slot="hotspot-dot-X-Y+Z" class="dot" data-position="-1 -1 1" data-normal="-1 0 0"></button>
+                  <svg id="dimLines" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" class="dimensionLineContainer">
                     <line class="dimensionLine"></line>
                     <line class="dimensionLine"></line>
                     <line class="dimensionLine"></line>
                     <line class="dimensionLine"></line>
                     <line class="dimensionLine"></line>
-                </svg>
-            </model-viewer>
-        </main>
-    </div> 
+                  </svg>
+
+                  <div hidden id="controls" class="dim glass">
+                    <input id="show-dimensions" type="checkbox" checked="true">
+                  </div>
+                </model-viewer>
+
+            </div>                         
+        </div>            
+    </main>    
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>  
+    <script  type="module" src="model-viewer-dimensions.js"></script>     
+    <script  type="module" src="index.js"></script>     
 </body>
-
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>  
-<script src="index.js"></script>    
 </html>
