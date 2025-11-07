@@ -41,10 +41,10 @@ function drawLine(svgLine, dotHotspot1, dotHotspot2, dimensionHotspot) {
 
         // use provided optional hotspot to tie visibility of this svg line to
         if (dimensionHotspot && !dimensionHotspot.facingCamera) {
-        svgLine.classList.add('hide');
+            svgLine.classList.add('hide');
         }
         else {
-        svgLine.classList.remove('hide');
+            svgLine.classList.remove('hide');
         }
     }
 }
