@@ -5,7 +5,7 @@ const bgInput = document.getElementById('bg-field');
 window.addEventListener('load', () => {
     console.log(window.location.search)
     const urlParams = new URLSearchParams(window.location.search);
-    console.log(urlParams);
+    console.log({url: urlParams.get('url')});
     if (urlParams.size) {
         viewer.src = urlParams.get('url');
     }
