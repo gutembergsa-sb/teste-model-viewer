@@ -2,6 +2,15 @@ const viewer = document.getElementById('dimension-demo');
 const modelInput = document.getElementById('model-field');
 const bgInput = document.getElementById('bg-field');
 
+window.addEventListener('load', () => {
+    console.log(window.location.search)
+    const urlParams = new URLSearchParams(window.location.search);
+    console.log(urlParams);
+    if (urlParams.size) {
+        viewer.src = urlParams.get('url');
+    }
+})
+
 bgInput.addEventListener('change', (event) => {
     const file = event.target.files[0];
     if (!file) return;
